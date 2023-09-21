@@ -32,6 +32,9 @@
                                     <th>@Html.DisplayNameFor(m => m.Edad)</th>
                                     <th>@Html.DisplayNameFor(m => m.Contacto)</th>
                                     <th>@Html.DisplayNameFor(m => m.Fecha_vinculacion)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Salario)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Password)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Rol)</th>
                                     <th>@Html.DisplayNameFor(m => m.IdRol)</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -45,13 +48,14 @@
                                         <td>@Html.DisplayFor(m => item.Edad)</td>
                                         <td>@Html.DisplayFor(m => item.Contacto)</td>
                                         <td>@Html.DisplayFor(m => item.Fecha_vinculacion)</td>
+                                        <td>@Html.DisplayFor(m => item.Salario)</td>
+                                        <td>@Html.DisplayFor(m => item.Password)</td>
+                                        <td>@Html.DisplayFor(m => item.Rol)</td>
                                         <td>@Html.DisplayFor(m => item.IdRol)</td>
                                         <td>
                                             <a class="btn btn-warning" asp-action="Editar" asp-route-id="@item.IdUsuario"><i class="bi bi-pencil-fill"></i> Editar</a>
                                             <a class="btn btn-secondary" asp-action="Detalle" asp-route-id="@item.IdUsuario"><i class="bi bi-info-circle-fill"></i> Detalle</a>
                                             <a class="btn btn-danger" asp-action="Eliminar" asp-route-id="@item.IdUsuario"><i class="bi bi-eraser-fill"></i> Eliminar</a>
-
-
                                         </td>
                                     </tr>
                                 }
