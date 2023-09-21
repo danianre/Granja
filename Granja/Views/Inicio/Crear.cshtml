@@ -1,0 +1,65 @@
+﻿@model Granja.Models.Usuarios
+@{
+    ViewData["Title"] = "Crear Nuevo Usuarios";
+}
+
+<div class="row">
+    <div class="offset-12">
+        <div class="card border"> 
+            <div class="card-header bg-dark">
+                <h3 class="text-white"><strong>Crear Usuarios</strong></h3>
+            </div>
+            <div class="card-body">
+                <form asp-action="Crear" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <input asp-for="Nombre" class="form-control" placeholder="Ingresa el nombre"/>
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Apellido" class="control-label"></label>
+                        <input asp-for="Apellido" class="form-control" placeholder="Ingresa el apellido" />
+                        <span asp-validation-for="Apellido" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Edad" class="control-label"></label>
+                        <input asp-for="Edad" class="form-control" placeholder="Ingresa la edad" />
+                        <span asp-validation-for="Edad" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Contacto" class="control-label"></label>
+                        <input asp-for="Contacto" class="form-control" placeholder="Ingresa el contacto" />
+                        <span asp-validation-for="Contacto" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Fecha_vinculacion" class="control-label"></label>
+                        <input asp-for="Fecha_vinculacion" class="form-control" placeholder="Ingresa la fecha de vinculación" />
+                        <span asp-validation-for="Fecha_vinculacion" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Salario" class="control-label"></label>
+                        <input asp-for="Salario" class="form-control" placeholder="Ingresa el salario" />
+                        <span asp-validation-for="Salario" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Rol" class="control-label"></label>
+                        <input asp-for="IdRol" class="form-control" placeholder="Ingresa el rol" />
+                        <span asp-validation-for="IdRol" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-secondary d-block mx-auto"><i class="bi bi-person-fill"></i>Crear</button>
+                    </div>
+                </form>
+                <a asp-controller="Inicio" asp-action="Index">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>                              
