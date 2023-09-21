@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Granja.Models.Usuarios>
+@{
+    ViewData["Title"] = "Lista de Usuarios";
+}
+
+
+<h1 class="text.center">Usuarios</h1>
+<div class="row">
+    <div class="offset-9 col-3 mb-3"> 
+        <a asp-action="Crear" asp-controller="Inicio" class="btn btn-secondary d-block mx-auto btn-lg">
+            <i class="bi bi-file-plus-fill"></i> Nuevo Usuario
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="offset-12">
+        <div class="card border"> 
+            <div class="card-header bg-dark">
+                <h3 class="text-white"><strong>Lista de Usuarios</strong></h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    @if (Model.Count() > 0)
+                    {
+                        <table class="table table-bordered" id="tblUsuarios" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(m => m.IdUsuario)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Nombre)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Apellido)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Edad)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Contacto)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Fecha_vinculacion)</th>
+                                    <th>@Html.DisplayNameFor(m => m.IdRol)</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var item in Model){
+                                    <tr>
+                                        <td>@Html.DisplayFor(m => item.IdUsuario)</td>
+                                        <td>@Html.DisplayFor(m => item.Nombre)</td>
+                                        <td>@Html.DisplayFor(m => item.Apellido)</td>
+                                        <td>@Html.DisplayFor(m => item.Edad)</td>
+                                        <td>@Html.DisplayFor(m => item.Contacto)</td>
+                                        <td>@Html.DisplayFor(m => item.Fecha_vinculacion)</td>
+                                        <td>@Html.DisplayFor(m => item.IdRol)</td>
+                                        <td>
+                                            <a class="btn btn-warning" asp-action="Editar" asp-route-id="@item.IdUsuario"><i class="bi bi-pencil-fill"></i> Editar</a>
+                                            <a class="btn btn-secondary" asp-action="Detalle" asp-route-id="@item.IdUsuario"><i class="bi bi-info-circle-fill"></i> Detalle</a>
+                                            <a class="btn btn-danger" asp-action="Eliminar" asp-route-id="@item.IdUsuario"><i class="bi bi-eraser-fill"></i> Eliminar</a>
+
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p>No hay registros</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            //Llamar a datatable
+            $('#tblUsuarios').DataTable(){
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
+}                                           
