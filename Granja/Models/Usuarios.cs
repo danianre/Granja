@@ -13,7 +13,10 @@ namespace Granja.Models
         public required DateTime Fecha_vinculacion { get; set; }
         public required float Salario { get; set; }
         public required string Password { get; set; }
+
+        [ForeingKey("Rol")]
         public required int IdRol { get; set; }
+        public required Roles Rol { get; set; }
 
     }
 }
