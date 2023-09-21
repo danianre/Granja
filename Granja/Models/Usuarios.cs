@@ -29,9 +29,10 @@ namespace Granja.Models
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public required string Password { get; set; }
 
-        [ForeignKey("Rol")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public int IdRol { get; set; }
+
+        [ForeignKey("IdRol")]
         public required Roles Rol { get; set; }
     }
 }

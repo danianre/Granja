@@ -34,7 +34,6 @@
                                     <th>@Html.DisplayNameFor(m => m.Fecha_vinculacion)</th>
                                     <th>@Html.DisplayNameFor(m => m.Salario)</th>
                                     <th>@Html.DisplayNameFor(m => m.Password)</th>
-                                    <th>@Html.DisplayNameFor(m => m.Rol)</th>
                                     <th>@Html.DisplayNameFor(m => m.IdRol)</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -50,7 +49,6 @@
                                         <td>@Html.DisplayFor(m => item.Fecha_vinculacion)</td>
                                         <td>@Html.DisplayFor(m => item.Salario)</td>
                                         <td>@Html.DisplayFor(m => item.Password)</td>
-                                        <td>@Html.DisplayFor(m => item.Rol)</td>
                                         <td>@Html.DisplayFor(m => item.IdRol)</td>
                                         <td>
                                             <a class="btn btn-warning" asp-action="Editar" asp-route-id="@item.IdUsuario"><i class="bi bi-pencil-fill"></i> Editar</a>
