@@ -35,7 +35,7 @@ namespace Granja.Migrations
                     Edad = table.Column<int>(type: "int", nullable: false),
                     Contacto = table.Column<int>(type: "int", nullable: false),
                     Fecha_vinculacion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Salario = table.Column<float>(type: "real", nullable: false),
+                    Salario = table.Column<int>(type: "int", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdRol = table.Column<int>(type: "int", nullable: false)
                 },

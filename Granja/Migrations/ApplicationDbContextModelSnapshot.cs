@@ -71,8 +71,8 @@ namespace Granja.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Salario")
-                        .HasColumnType("real");
+                    b.Property<int>("Salario")
+                        .HasColumnType("int");
 
                     b.HasKey("IdUsuario");
 
