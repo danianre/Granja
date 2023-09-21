@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Granja.Models
 {
@@ -14,9 +15,8 @@ namespace Granja.Models
         public required float Salario { get; set; }
         public required string Password { get; set; }
 
-        [ForeingKey("Rol")]
-        public required int IdRol { get; set; }
+        [ForeignKey("Rol")]
+        public int IdRol { get; set; }
         public required Roles Rol { get; set; }
-
     }
 }
