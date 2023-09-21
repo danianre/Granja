@@ -37,24 +37,23 @@ namespace Granja.Migrations
                     Fecha_vinculacion = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Salario = table.Column<float>(type: "real", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdRol = table.Column<int>(type: "int", nullable: false),
-                    RolIdRol = table.Column<int>(type: "int", nullable: false)
+                    IdRol = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.IdUsuario);
                     table.ForeignKey(
-                        name: "FK_Usuarios_Roles_RolIdRol",
-                        column: x => x.RolIdRol,
+                        name: "FK_Usuarios_Roles_IdRol",
+                        column: x => x.IdRol,
                         principalTable: "Roles",
                         principalColumn: "IdRol",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Usuarios_RolIdRol",
+                name: "IX_Usuarios_IdRol",
                 table: "Usuarios",
-                column: "RolIdRol");
+                column: "IdRol");
         }
 
         /// <inheritdoc />

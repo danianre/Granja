@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Granja.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230921161727_MigracionInicialUsuariosRoles")]
+    [Migration("20230921162948_MigracionInicialUsuariosRoles")]
     partial class MigracionInicialUsuariosRoles
     {
         /// <inheritdoc />
@@ -74,15 +74,12 @@ namespace Granja.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RolIdRol")
-                        .HasColumnType("int");
-
                     b.Property<float>("Salario")
                         .HasColumnType("real");
 
                     b.HasKey("IdUsuario");
 
-                    b.HasIndex("RolIdRol");
+                    b.HasIndex("IdRol");
 
                     b.ToTable("Usuarios");
                 });
@@ -91,7 +88,7 @@ namespace Granja.Migrations
                 {
                     b.HasOne("Granja.Models.Roles", "Rol")
                         .WithMany()
-                        .HasForeignKey("RolIdRol")
+                        .HasForeignKey("IdRol")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
