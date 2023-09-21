@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Granja.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230921200322_MigracionInicialUsuariosRoles")]
+    [Migration("20230921220415_MigracionInicialUsuariosRoles")]
     partial class MigracionInicialUsuariosRoles
     {
         /// <inheritdoc />
@@ -71,7 +71,6 @@ namespace Granja.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Salario")

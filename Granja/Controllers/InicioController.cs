@@ -32,11 +32,14 @@ namespace Granja.Controllers
         [HttpPost]
         public async Task<IActionResult> Crear(Usuarios usuarios)
         {
+            // Generar una contraseña aleatoria
+            string contraseñaAleatoria = GenerarPasswordAleatoria();
+
+            // Asignar la contraseña aleatoria al usuario
+            usuarios.Password = contraseñaAleatoria;
+
             if (ModelState.IsValid) 
             {
-                // Generar una contraseña aleatoria
-                usuarios.Password = GenerarPasswordAleatoria();
-
                 _contexto.Usuarios.Add(usuarios);
                 await _contexto.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -59,22 +62,24 @@ namespace Granja.Controllers
             const string caracteresPermitidos = "0123456789ABCDEF";
 
             // Crear un generador de números aleatorios seguro
-            using var rng = RandomNumberGenerator.Create();
-            byte[] bytesAleatorios = new byte[longitud];
-            rng.GetBytes(bytesAleatorios);
-
-            StringBuilder contraseñaAleatoria = new StringBuilder(longitud);
-
-            foreach (byte byteAleatorio in bytesAleatorios)
+            using (var rng = RandomNumberGenerator.Create())
             {
-                // Obtener un índice válido en función de la longitud de los caracteres permitidos
-                int indiceCaracter = byteAleatorio % caracteresPermitidos.Length;
+                byte[] bytesAleatorios = new byte[longitud];
+                rng.GetBytes(bytesAleatorios);
 
-                // Agregar el carácter aleatorio a la contraseña
-                contraseñaAleatoria.Append(caracteresPermitidos[indiceCaracter]);
+                StringBuilder contraseñaAleatoria = new StringBuilder(longitud);
+
+                foreach (byte byteAleatorio in bytesAleatorios)
+                {
+                    // Obtener un índice válido en función de la longitud de los caracteres permitidos
+                    int indiceCaracter = byteAleatorio % caracteresPermitidos.Length;
+
+                    // Agregar el carácter aleatorio a la contraseña
+                    contraseñaAleatoria.Append(caracteresPermitidos[indiceCaracter]);
+                }
+
+                return contraseñaAleatoria.ToString();
             }
-
-            return contraseñaAleatoria.ToString();
         }
     }
 }
