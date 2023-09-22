@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SQLite;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.SqlTypes;
 
@@ -10,7 +11,7 @@ namespace Granja.Models
         public int IdUsuario { get; set; }
 
         [Required(ErrorMessage = "Este campo es obligatorio")]
-        
+        [Unique]
         public int DocumentoID { get; set; }
 
         [Required (ErrorMessage = "Este campo es obligatorio")]
