@@ -12,7 +12,7 @@ namespace Granja.Models
 
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [Unique]
-        public int DocumentoID { get; set; }
+        public required int DocumentoID { get; set; }
 
         [Required (ErrorMessage = "Este campo es obligatorio")]
         public required string Nombre {  get; set; }
