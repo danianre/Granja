@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Granja.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230921220415_MigracionInicialUsuariosRoles")]
-    partial class MigracionInicialUsuariosRoles
+    [Migration("20230922065339_MigracionInicialGranjaDB")]
+    partial class MigracionInicialGranjaDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,6 +55,9 @@ namespace Granja.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Contacto")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DocumentoID")
                         .HasColumnType("int");
 
                     b.Property<int>("Edad")

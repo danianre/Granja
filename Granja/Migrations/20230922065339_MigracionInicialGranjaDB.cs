@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Granja.Migrations
 {
     /// <inheritdoc />
-    public partial class MigracionInicialUsuariosRoles : Migration
+    public partial class MigracionInicialGranjaDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,6 +30,7 @@ namespace Granja.Migrations
                 {
                     IdUsuario = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    DocumentoID = table.Column<int>(type: "int", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Edad = table.Column<int>(type: "int", nullable: false),

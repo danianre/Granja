@@ -54,6 +54,9 @@ namespace Granja.Migrations
                     b.Property<int>("Contacto")
                         .HasColumnType("int");
 
+                    b.Property<int>("DocumentoID")
+                        .HasColumnType("int");
+
                     b.Property<int>("Edad")
                         .HasColumnType("int");
 
