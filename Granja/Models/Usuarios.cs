@@ -8,6 +8,11 @@ namespace Granja.Models
     {
         [Key]
         public int IdUsuario { get; set; }
+
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        
+        public int DocumentoID { get; set; }
+
         [Required (ErrorMessage = "Este campo es obligatorio")]
         public required string Nombre {  get; set; }
 

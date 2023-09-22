@@ -27,6 +27,7 @@
                             <thead>
                                 <tr>
                                     <th>@Html.DisplayNameFor(m => m.IdUsuario)</th>
+                                    <th>@Html.DisplayNameFor(m => m.DocumentoID)</th>
                                     <th>@Html.DisplayNameFor(m => m.Nombre)</th>
                                     <th>@Html.DisplayNameFor(m => m.Apellido)</th>
                                     <th>@Html.DisplayNameFor(m => m.Edad)</th>
@@ -41,6 +42,7 @@
                                 @foreach(var item in Model){
                                     <tr>
                                         <td>@Html.DisplayFor(m => item.IdUsuario)</td>
+                                        <td>@Html.DisplayFor(m => item.DocumentoID)</td>
                                         <td>@Html.DisplayFor(m => item.Nombre)</td>
                                         <td>@Html.DisplayFor(m => item.Apellido)</td>
                                         <td>@Html.DisplayFor(m => item.Edad)</td>
