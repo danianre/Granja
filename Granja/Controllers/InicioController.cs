@@ -40,6 +40,17 @@ namespace Granja.Controllers
 
             if (ModelState.IsValid) 
             {
+                // Verificar si el DocumentoID ya existe en la base de datos
+                var documentoExistente = await _contexto.Usuarios
+                    .FirstOrDefaultAsync(u => u.DocumentoID == usuarios.DocumentoID);
+
+                if (documentoExistente != null)
+                {
+                    // Mostrar error
+                    ModelState.AddModelError("DocumentoID", "El documento de identidad ya existe.");
+                    return View(usuarios);
+                }
+
                 _contexto.Usuarios.Add(usuarios);
                 await _contexto.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
