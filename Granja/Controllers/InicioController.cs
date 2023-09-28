@@ -3,6 +3,7 @@ using Granja.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -57,6 +58,35 @@ namespace Granja.Controllers
             }
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Eliminar(int? idUsuario)
+        {
+            if (idUsuario == null)
+            {
+                // Maneja el caso en que el ID de usuario no se proporciona
+                return BadRequest();
+            }
+
+            // Busca el usuario por su ID en la base de datos
+            var usuario = await _contexto.Usuarios.FindAsync(idUsuario);
+
+            if (usuario == null)
+            {
+                // Si el usuario no se encuentra, puedes mostrar un mensaje de error o realizar alguna otra acción apropiada.
+                return NotFound();
+            }
+
+            // Elimina el usuario de la base de datos
+            _contexto.Usuarios.Remove(usuario);
+            await _contexto.SaveChangesAsync();
+
+            // Devuelve una respuesta de éxito (puedes personalizarla según tus necesidades)
+            return Json(new { success = true });
+        }
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
