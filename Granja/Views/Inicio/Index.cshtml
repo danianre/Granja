@@ -2,8 +2,15 @@
 @{
     ViewData["Title"] = "Lista de Usuarios";
 }
+<!-- Agrega esto al principio de tu index.cshtml para incluir SweetAlert -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<link rel="stylesheet" type="text/css" href=".././">
 
 
+<style>
+    
+</style>
 <h1 class="text.center">Usuarios</h1>
 <div class="row">
     <div class="offset-9 col-3 mb-3"> 
@@ -51,9 +58,10 @@
                                         <td>@Html.DisplayFor(m => item.Salario)</td>
                                         <td>@Html.DisplayFor(m => item.IdRol)</td>
                                         <td>
-                                            <a class="btn btn-warning" asp-action="Editar" asp-route-id="@item.IdUsuario"><i class="bi bi-pencil-fill"></i> Editar</a>
+                                            <!--<a class="btn btn-warning" asp-action="Editar" asp-route-id="@item.IdUsuario"><i class="bi bi-pencil-fill"></i> Editar</a>-->
                                             <!--<a class="btn btn-secondary" asp-action="Detalle" asp-route-id="@item.IdUsuario"><i class="bi bi-info-circle-fill"></i> Detalle</a>-->
-                                            <a class="btn btn-danger" asp-action="Eliminar" asp-route-id="@item.IdUsuario"><i class="bi bi-eraser-fill"></i> Eliminar</a>
+                                            <!--<button type="submit" class="btn btn-danger eliminar-usuario" asp-action="Eliminar" asp-route-id="@item.IdUsuario"><i class="bi bi-eraser-fill"></i> Eliminar</button>-->
+                                            <button type="button" class="btn btn-danger d-block mx-auto eliminar-usuario" data-id="@item.IdUsuario"><i class="bi bi-eraser-fill"></i> Eliminar</button>
                                         </td>
                                     </tr>
                                 }
@@ -98,4 +106,60 @@
             });
         });
     </script>
-}                                           
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            });
+            // Maneja el clic del botón Eliminar
+            $('.eliminar-usuario').click(function () {
+                console.log('Botón Eliminar clickeado');
+                var idUsuario = $(this).data('id');
+
+                // Muestra el SweetAlert para confirmar la eliminación
+                swalWithBootstrapButtons.fire({
+                    title: '¿Estás seguro?',
+                    text: "¡No podrás revertir esto!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'No, cancelar',
+                    reverseButtons: true
+                }).then(function (result) {
+                    console.log('SweetAlert confirmado');
+                    if (result.isConfirmed) {
+                        // Realiza la eliminación a través de AJAX
+                        $.ajax({
+                            url: '/Inicio/Eliminar/' + idUsuario,
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                idUsuario: idUsuario
+                            },
+                        });
+                        swalWithBootstrapButtons.fire(
+                            'Eliminado!',
+                            'Usuario ha sido eliminado.',
+                            'success'
+                        )
+                        location.reload();
+                    } else if (
+                        /* Read more about handling dismissals below */
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons.fire(
+                            'Cancelado',
+                            'Usuario NO ha sido eliminado',
+                            'error'
+                        )
+                    }
+                });
+            });
+        });
+    </script>
+}
