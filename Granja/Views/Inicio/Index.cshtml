@@ -146,12 +146,11 @@
                             'Eliminado!',
                             'Usuario ha sido eliminado.',
                             'success'
-                        )
-                        location.reload();
-                    } else if (
-                        /* Read more about handling dismissals below */
-                        result.dismiss === Swal.DismissReason.cancel
-                    ) {
+                        ).then(function () {
+                            // Recarga la página después de que el usuario presione "Ok"
+                            location.reload();
+                        });
+                    } else{
                         swalWithBootstrapButtons.fire(
                             'Cancelado',
                             'Usuario NO ha sido eliminado',
